@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<div
+		style="background-image: url('https://cdn.jsdelivr.net/gh/SpadesA99/webui@1.0/ui-1/image/p.jpg'); height: 50%; background-size: contain; background-repeat: no-repeat;">
+		<div style="position: relative;">
+			<div onmousedown="eMsg('move')"
+				style="-webkit-app-region: drag; position: absolute; top: 0; height: 32px; width: 100%;">
+			</div>
+			<div onclick="eMsg('close')">
+				<svg style="position: absolute; top: 0; right: 0;" t="1605238350861" class="icon"
+					viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1761" width="32"
+					height="32">
+					<path
+						d="M0 0C0 565.539584 458.460416 1024 1024 1024L1024 0 0 0 0 0 0 0ZM608.127206 426.810982 734.960256 553.892762C744.888294 563.840256 744.83817 580.030848 734.84073 590.047872 724.773606 600.134758 708.687795 600.118528 698.756378 590.167629L571.923328 463.08585 445.090278 590.167629C435.162266 600.115123 419.003366 600.064922 409.005926 590.047872 398.938803 579.961011 398.955008 563.843661 408.886426 553.892762L535.719475 426.810982 408.886426 299.729203C398.958387 289.781709 399.008512 273.591117 409.005926 263.574093 419.07305 253.487206 435.158861 253.503437 445.090278 263.454336L571.923328 390.536115 698.756378 263.454336C708.684416 253.506842 724.843315 253.557043 734.84073 263.574093 744.907853 273.660954 744.891674 289.778304 734.960256 299.729203L608.127206 426.810982 608.127206 426.810982 608.127206 426.810982 608.127206 426.810982Z"
+						p-id="1762" fill="#8a8a8a"></path>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div style="display: flex; flex-direction: column; height: 45%; background-color: #fff;">
+
+		<ul id="myTab" class="nav nav-tabs">
+			<li class="active"><a href="#login" data-toggle="tab">登录</a></li>
+			<li><a href="#register" data-toggle="tab">注册</a></li>
+			<li><a href="#Unbundling" data-toggle="tab">解绑</a></li>
+			<li><a href="#Recharge" data-toggle="tab">充值</a></li>
+			<li><a href="#resetpwd" data-toggle="tab">改密</a></li>
+		</ul>
+
+		<div id="myTabContent" class="tab-content">
+
+			<div class="tab-pane fade in active" id="login">
+				<form style="margin-left: 10px; margin-right: 10px; margin-top: 20px;">
+					<div class="form-group">
+						<input type="text" class="form-control" id="IdLoginUserName" placeholder="用户名">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="IdLoginPwd" placeholder="密码">
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="IdCheck"> 记住账号密码
+						</label>
+					</div>
+				</form>
+				<button onclick="Login($('#IdLoginUserName').val(),$('#IdLoginPwd').val(),$('#IdCheck').is(':checked'))"
+					type="button" class="btn btn-default" style="margin-left: 10px;">登录</button>
+			</div>
+
+			<div class="tab-pane fade" id="register">
+				<form style="margin-left: 10px; margin-right: 10px; margin-top: 20px;">
+					<div class="form-group">
+						<input type="text" class="form-control" id="IdRegisterUserName" placeholder="用户名">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="IdRegisterPwd" placeholder="密码">
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" id="IdRegisterEmail" placeholder="邮箱">
+					</div>
+				</form>
+				<button
+					onclick="Register($('#IdRegisterUserName').val(),$('#IdRegisterPwd').val(),$('#IdRegisterEmail').val())"
+					type="button" class="btn btn-default" style="margin-left: 10px;">注册</button>
+			</div>
+
+			<div class="tab-pane fade" id="Unbundling">
+				<form style="margin-left: 10px; margin-right: 10px; margin-top: 20px;">
+					<div class="form-group">
+						<input type="text" class="form-control" id="IdUnbundlingUserName" placeholder="用户名">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="IdUnbundlingPwd" placeholder="密码">
+					</div>
+				</form>
+				<button onclick="Unbundling($('#IdUnbundlingUserName').val(),$('#IdUnbundlingPwd').val())" type="button"
+					class="btn btn-default" style="margin-left: 10px;">解绑</button>
+			</div>
+
+			<div class="tab-pane fade" id="Recharge">
+				<form style="margin-left: 10px; margin-right: 10px; margin-top: 20px;">
+					<div class="form-group">
+						<input type="text" class="form-control" id="IdRechargeUserName" placeholder="用户名">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="IdRechargeCard" placeholder="卡密">
+					</div>
+				</form>
+				<button onclick="Recharge($('#IdRechargeUserName').val(),$('#IdRechargeCard').val())" type="button"
+					class="btn btn-default" style="margin-left: 10px;">充值</button>
+			</div>
+
+			<div class="tab-pane fade" id="resetpwd">
+				<form style="margin-left: 10px; margin-right: 10px; margin-top: 20px;">
+					<div class="form-group">
+						<input type="text" class="form-control" id="IdResetpwdUserName" placeholder="用户名">
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" id="IdResetpwdEmail" placeholder="邮箱">
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" id="IdResetpwdnPwd" placeholder="新密码">
+					</div>
+				</form>
+				<button
+					onclick="Resetpwd($('#IdResetpwdUserName').val(),$('#IdResetpwdEmail').val(),$('#IdResetpwdnPwd').val())"
+					type="button" class="btn btn-default" style="margin-left: 10px;">改密</button>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div style="height: 5%; background-color: rgb(214,214,214); align-items:center; display: -webkit-flex;">
+		<span class="label label-default"
+			style="background-color: rgb(214,214,214); color: slategrey; margin-left: 5px;"
+			id="SpanBulletin">正在初始化中...</span>
+	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+				</div>
+				<div class="modal-body" id="IdBulletin">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div style="display: none;">橘子网络验证 www.jzserver.com</div>
+</body>
+
+<style>
+	html,
+	body {
+		height: 100%;
+		border: none;
+		margin: 0px;
+	}
+
+	.nav-tabs>li>a {
+		margin-right: 0px;
+	}
+
+</style>
+
+<script>
+	$(function () {
+		var obj = Init();
+		$('#SpanBulletin').text(obj.ver);
+		$('#IdBulletin').text(obj.bulletin);
+		$('#IdLoginUserName').val(obj.user);
+		$('#IdLoginPwd').val(obj.pwd);
+		$('#myModal').modal('show');
+	});
+</script>
+
+</html>
